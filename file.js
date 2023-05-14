@@ -6,6 +6,7 @@ const openWebCam = document.getElementById('webCam')
 const doneBtn = document.getElementById('done')
 const videoEl = $('#video').get(0)
 let mediaStream;
+var test = [];
 
 async function onPlay() {
   
@@ -19,7 +20,10 @@ async function onPlay() {
     const canvas = $('#overlay').get(0)
     const accuracy = result._score
     const dims = faceapi.matchDimensions(canvas, videoEl, true)
-    faceapi.draw.drawDetections(canvas, faceapi.resizeResults(result, dims))
+    test.push(dims)
+
+    faceapi.draw.drawDetections(canvas, faceapi.resizeResults(result, test[0]))
+    // console.log(faceapi.draw.drawDetections(canvas, faceapi.resizeResults(result, dims)));
     
     if(accuracy >= 0.98){
       overLay.style.border = '10px solid green';
